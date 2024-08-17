@@ -9,7 +9,7 @@ import About from './pages/About/About';
 function App() {
   return (
     <div className={styles.wrapper}>
-      <Router>
+      <Router basename='/homework38'>
         <Header></Header>
         <Routes>
           <Route path='/' element={<Home></Home>}></Route>

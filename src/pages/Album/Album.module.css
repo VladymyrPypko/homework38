@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+}
+
+.title {
+  padding-inline: 20px;
+  font-size: 1.5rem;
+  color: #301b28;
+}
+
+.gallery {
+  align-self: center;
+  width: 80%;
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}

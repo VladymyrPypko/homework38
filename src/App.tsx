@@ -1,4 +1,4 @@
-import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
+import { Routes, Route, HashRouter as Router } from 'react-router-dom';
 import styles from './App.module.css';
 import Header from './components/Header/Header';
 import Home from './pages/Home/Home';
@@ -11,8 +11,8 @@ function App() {
   return (
     <div className={styles.wrapper}>
       <AlbumsProvider>
-        <Router basename='homework38'>
-          <Header></Header>
+        <Router basename='/homework38'>
+          <Header />
           <Routes>
             <Route path='/' element={<Home></Home>}></Route>
             <Route path='/albums' element={<Albums></Albums>}></Route>

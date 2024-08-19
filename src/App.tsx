@@ -11,7 +11,7 @@ function App() {
   return (
     <div className={styles.wrapper}>
       <AlbumsProvider>
-        <Router basename='/homework38'>
+        <Router basename='homework38'>
           <Header></Header>
           <Routes>
             <Route path='/' element={<Home></Home>}></Route>

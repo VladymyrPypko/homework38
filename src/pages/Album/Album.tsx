@@ -1,42 +1,24 @@
-import { useEffect, useState } from "react";
-import { Photo } from "../../interfaces/Photo.interface";
 import { useParams } from "react-router-dom";
 import styles from './Album.module.css';
+import { useGetAlbumPhotosQuery } from "../../store/albumsApi";
 
 export default function Album() {
-  const [photos, setPhotos] = useState<Photo[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
   const { id } = useParams<{id: string}>();
+  const { data: photos, error, isLoading } = useGetAlbumPhotosQuery(Number(id));
 
-  useEffect(() => {
-    const fetchPhotos = async () => {
-      try {
-        const response = await fetch(`https://jsonplaceholder.typicode.com/albums/${id}/photos`);
-        const data = await response.json();
-        setPhotos(data);
-      } catch(error) {
-        console.error(`Failed to fetch photos: ${error}`);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchPhotos();
-  }, [id])
+  if (isLoading) return <p>Загрузка...</p>
+  if (error) return <p>Произошла ошибка загрузки фото</p>
 
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Фотографии альбома</h2>
-      {loading ? (
-        <span>Загрузка...</span>
-      ) : (
         <div className={styles.gallery}>
-          {photos.map((photo) => (
+          {photos?.map((photo) => (
             <div key={photo.id}>
               <img src={photo.thumbnailUrl} alt={photo.title} />
             </div>
           ))}
         </div>
-      )}
     </div>
   )
 }
